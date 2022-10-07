@@ -27,7 +27,7 @@ class Employee:
     def setHours(self, num):
       self.hours=num
 
-     def set_pay(self):
+    def set_pay(self):
          if self.contract=="hourly":
              self.totalPay=self.pay*self.hours
          elif self.contract=="monthly":
