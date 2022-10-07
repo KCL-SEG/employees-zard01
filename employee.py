@@ -28,7 +28,19 @@ class Employee:
       self.hours=num
 
      def set_pay(self):
-         self.totalPay=self.pay
+         if self.contract=="hourly":
+             self.totalPay=self.pay*self.hours
+         elif self.contract=="monthly":
+             self.totalPay=self.pay
+         else:
+             print("Invalid contract type")
+        if self.hasCommission:
+            if self.commissionType == "contract":
+                self.totalPay+=self.numContracts*self.perContract
+            elif self.commissionType=='bonus':
+                self.totalPay+=self.bonusPay
+            else:
+                print("Invalid commission type")
 
 
     def get_pay(self):
