@@ -14,6 +14,8 @@ class Employee:
       self.bonusPay=0
       self.totalPay=0
 
+
+
     def setCommissionType(self, type):
       self.commissionType = type;
 
@@ -28,24 +30,25 @@ class Employee:
       self.hours=num
 
     def set_pay(self):
-         if self.contract=="hourly":
-             self.totalPay=self.pay*self.hours
-         elif self.contract=="monthly":
-             self.totalPay=self.pay
-         else:
-             print("Invalid contract type")
-        if self.hasCommission:
-            if self.commissionType == "contract":
-                self.totalPay+=self.numContracts*self.perContract
-            elif self.commissionType=='bonus':
-                self.totalPay+=self.bonusPay
-            else:
-                print("Invalid commission type")
-
+      if self.contract=="hourly":
+        self.totalPay=self.pay*self.hours
+      elif self.contract=="monthly":
+        self.totalPay=self.pay
+      else:
+        print("Invalid contract type")
+      if self.hasCommission:
+        if self.commissionType == "contract":
+          self.totalPay+=self.numContracts*self.perContract
+        elif self.commissionType=='bonus':
+          self.totalPay+=self.bonusPay
+        else:
+          print("Invalid commission type")
 
     def get_pay(self):
-        self.set_pay()
-        return self.totalPay
+      self.set_pay()
+      return self.totalPay
+
+
 
 
     def __str__(self):
@@ -63,8 +66,10 @@ class Employee:
 
       returnString+=". Their total pay is {}.".format(self.totalPay)
 
-      return returnString
 
+
+
+      return returnString
 
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
@@ -85,6 +90,7 @@ jan = Employee('Jan','hourly',25,True)
 jan.setHours(150)
 jan.setCommissionType('contract')
 jan.setCommissionContracts(3,220)
+
 
 
 # Robbie works on a monthly salary of 2000 and receives a bonus commission of 1500.  Their total pay is 3500.
