@@ -49,7 +49,21 @@ class Employee:
 
 
     def __str__(self):
-        return self.name
+      returnString = "{} works on a".format(self.name)
+      if self.contract == "monthly":
+        returnString+=" monthly salary of {}".format(self.pay)
+      elif self.contract=="hourly":
+        returnString+=" contract of {} hours at {}/hour".format(self.hours, self.pay)
+
+      if self.hasCommission:
+        if self.commissionType == "contract":
+          returnString+=" and receives a commission for {} contract(s) at {}/contract".format(self.numContracts,self.perContract)
+        elif self.commissionType == 'bonus':
+          returnString+=" and receives a bonus commission of {}".format(self.bonusPay)
+
+      returnString+=". Their total pay is {}.".format(self.totalPay)
+
+      return returnString
 
 
 
