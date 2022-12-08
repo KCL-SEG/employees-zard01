@@ -66,7 +66,7 @@ class Employee:
           print("Invalid commission type")
 
     def get_pay(self):
-      self.setTotalPay()
+      self.set_totalPay()
       return self.totalPay
 
     def __str__(self):
