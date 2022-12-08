@@ -4,11 +4,9 @@
 class Employee:
     def __init__(self, name):
       self.name = name
-      '''
       self.contract = ''
       self.pay=0
       self.hasCommission=False
-      '''
       self.commissionType=""
       self.hours=0
       self.numContracts=0
