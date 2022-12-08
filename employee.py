@@ -1,22 +1,14 @@
 """Employee pay calculator."""
 """ENTER YOUR SOLUTION HERE!"""
 
-class _Employee:
-    def __init__(self, name):
-        self.name = name
-
-    def get_pay(self):
-        pass
-
-    def __str__(self):
-        return self.name
-
 class Employee:
-    def __init__(self, name, contract,pay, hasCommission):
+    def __init__(self, name):
       self.name = name
-      self.contract = contract
-      self.pay=pay
-      self.hasCommission=hasCommission
+      '''
+      self.contract = ''
+      self.pay=0
+      self.hasCommission=False
+      '''
       self.commissionType=""
       self.hours=0
       self.numContracts=0
@@ -24,42 +16,58 @@ class Employee:
       self.bonusPay=0
       self.totalPay=0
 
+    def set_contract(self, contract):
+      self.contract=contract
 
+    def set_pay(self, pay):
+      self.pay= pay
 
-    def setCommissionType(self, type):
-      self.commissionType = type;
+    def set_hasCommission(self, val):
+      self.hasCommission=val
 
-    def setCommissionContracts(self, numContr, perContr):
+    def set_commissionType(self, type):
+      self.commissionType = type
+
+    def set_commission_contracts(self, numContr, perContr):
       self.numContracts=numContr
       self.perContract=perContr
 
-    def setBonusPay(self, bPay):
+    def set_bonusPay(self, bPay):
       self.bonusPay=bPay
 
-    def setHours(self, num):
+    def set_hours(self, num):
       self.hours=num
 
-    def set_pay(self):
+    def calculate_pay_hourly():
+      self.totalPay=self.pay*self.hours
+
+    def calculate_pay_monthly():
+      self.totalPay=self.pay
+
+    def calculate_pay_contract():
+      self.totalPay+=self.numContracts*self.perContract
+
+    def calculate_pay_bonus():
+      self.totalPay+=self.bonusPay
+
+    def set_totalPay(self):
       if self.contract=="hourly":
-        self.totalPay=self.pay*self.hours
+        calculate_pay_hourly()
       elif self.contract=="monthly":
         self.totalPay=self.pay
       else:
         print("Invalid contract type")
       if self.hasCommission:
         if self.commissionType == "contract":
-          self.totalPay+=self.numContracts*self.perContract
+          calculate_pay_contract()
         elif self.commissionType=='bonus':
-          self.totalPay+=self.bonusPay
+          calculate_pay_bonus()
         else:
           print("Invalid commission type")
 
     def get_pay(self):
-      self.set_pay()
+      self.setTotalPay()
       return self.totalPay
-
-
-
 
     def __str__(self):
       returnString = "{} works on a".format(self.name)
@@ -75,47 +83,53 @@ class Employee:
           returnString+=" and receives a bonus commission of {}".format(self.bonusPay)
 
       returnString+=". Their total pay is {}.".format(self.totalPay)
-
-
-
-
       return returnString
 
+#name, contract,pay, hasCommission
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
-billie = _Employee('Billie')
-billie = Employee('Billie', 'monthly',4000, False)
-
+billie = Employee('Billie')
+billie.set_contract('monthly')
+billie.set_pay(4000)
+billie.set_hasCommission(False)
 
 # Charlie works on a contract of 100 hours at 25/hour.  Their total pay is 2500.
-charlie = _Employee('Charlie')
-charlie = Employee('Charlie', 'hourly',25, False)
-charlie.setHours(100)
+charlie = Employee('Charlie')
+charlie.set_contract('hourly')
+charlie.set_pay(25)
+charlie.set_hasCommission(False)
+charlie.set_hours(100)
 
 # Renee works on a monthly salary of 3000 and receives a commission for 4 contract(s) at 200/contract.  Their total pay is 3800.
-renee = _Employee('Renee')
-renee = Employee('Renee', 'monthly',3000, True)
-renee.setCommissionType('contract')
-renee.setCommissionContracts(4,200)
+renee = Employee('Renee')
+renee.set_contract('monthly')
+renee.set_pay(3000)
+renee.set_hasCommission(True)
+renee.set_commissionType('contract')
+renee.set_commission_contracts(4,200)
 
 # Jan works on a contract of 150 hours at 25/hour and receives a commission for 3 contract(s) at 220/contract.  Their total pay is 4410.
-jan = _Employee('Jan')
-jan = Employee('Jan','hourly',25,True)
-jan.setHours(150)
-jan.setCommissionType('contract')
-jan.setCommissionContracts(3,220)
-
-
+jan = Employee('Jan')
+jan.set_contract('hourly')
+jan.set_pay(25)
+jan.set_hasCommission(True)
+jan.set_hours(150)
+jan.set_commissionType('contract')
+jan.set_commission_contracts(3,220)
 
 # Robbie works on a monthly salary of 2000 and receives a bonus commission of 1500.  Their total pay is 3500.
-robbie = _Employee('Robbie')
-robbie = Employee('Robbie','monthly',2000,True)
-robbie.setCommissionType('bonus')
-robbie.setBonusPay(1500)
+robbie = Employee('Robbie')
+robbie.set_contract('monthly')
+robbie.set_pay(2000)
+robbie.set_hasCommission(True)
+robbie.set_commissionType('bonus')
+robbie.set_bonusPay(1500)
 
 # Ariel works on a contract of 120 hours at 30/hour and receives a bonus commission of 600.  Their total pay is 4200.
-ariel = _Employee('Ariel')
-ariel = Employee('Ariel','hourly',30,True)
-ariel.setHours(120)
-ariel.setCommissionType('bonus')
-ariel.setBonusPay(600)
+ariel = Employee('Ariel')
+ariel.set_contract('hourly')
+ariel.set_pay(30) 
+ariel.set_hasCommission(True)
+ariel.set_hours(120)
+ariel.set_commissionType('bonus')
+ariel.set_bonusPay(600)
